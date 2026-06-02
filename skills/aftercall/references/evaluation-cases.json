@@ -1,0 +1,94 @@
+[
+  {
+    "name": "happy-path-work-call",
+    "user_request": "Вот transcript созвона с клиентом. Собери нормальную выжимку, решения, кто за что отвечает и короткий follow-up.",
+    "should_trigger": true,
+    "expected": [
+      "Uses after-call workflow",
+      "Selects work-call or client-follow-up mode",
+      "Extracts decisions and owners",
+      "Provides ready-to-send follow-up"
+    ]
+  },
+  {
+    "name": "edge-case-therapy-session",
+    "user_request": "Вот запись моей сессии с психологом. Расшифруй, выдели ключевые темы и скажи, на что мне стоит обратить внимание между сессиями.",
+    "should_trigger": true,
+    "expected": [
+      "Transcribes first if needed",
+      "Selects therapy-session mode",
+      "Analyzes themes carefully",
+      "Avoids diagnosis language"
+    ]
+  },
+  {
+    "name": "study-call-learning-output",
+    "user_request": "Вот запись study call по агентным системам. Сделай учебную выжимку: ключевые идеи, что мне повторить и что изучать дальше.",
+    "should_trigger": true,
+    "expected": [
+      "Selects study-call mode",
+      "Outputs concepts and study next steps",
+      "Uses educational rather than business framing"
+    ]
+  },
+  {
+    "name": "speaker-aware-transcript",
+    "user_request": "Вот аудио созвона. Сделай транскрипт и постарайся отделить Speaker 1 и Speaker 2, чтобы было понятно кто что говорил.",
+    "should_trigger": true,
+    "expected": [
+      "Enables speaker-aware mode",
+      "Returns speaker-labeled transcript",
+      "States uncertainty if attribution is weak"
+    ]
+  },
+  {
+    "name": "post-transcription-speaker-offer",
+    "user_request": "Вот запись звонка, сначала расшифруй, а потом помоги разобрать.",
+    "should_trigger": true,
+    "expected": [
+      "Transcribes first",
+      "Before analysis, offers optional speaker-aware transcription",
+      "Explains speaker-aware mode in simple language",
+      "Invites optional rename map for speakers"
+    ]
+  },
+  {
+    "name": "speaker-rename-map",
+    "user_request": "Вот запись моей сессии. Сделай transcript с говорящими: Speaker 1 = я, Speaker 2 = психолог.",
+    "should_trigger": true,
+    "expected": [
+      "Uses speaker rename map",
+      "Does not invent extra identities",
+      "Returns labeled transcript plus useful summary"
+    ]
+  },
+  {
+    "name": "raw-unlabeled-transcript-speaker-offer",
+    "user_request": "Вот сырой transcript созвона без ролей. Перед разбором предложи, если можно, разделить кто говорит.",
+    "should_trigger": true,
+    "expected": [
+      "Recognizes transcript can still benefit from speaker-aware separation",
+      "Offers speaker-aware mode before deeper analysis",
+      "Does not assume transcript is already good enough just because it exists"
+    ]
+  },
+  {
+    "name": "obsidian-export-request",
+    "user_request": "Из этого transcript сделай after-call заметку для Obsidian с action items и wikilinks.",
+    "should_trigger": true,
+    "expected": [
+      "Uses after-call workflow",
+      "Chooses obsidian export format",
+      "Returns note-ready structure"
+    ]
+  },
+  {
+    "name": "disambiguation-live-meeting",
+    "user_request": "Помоги вести заметки на текущем звонке в реальном времени",
+    "should_trigger": false,
+    "expected": [
+      "Does not use after-call as the primary skill",
+      "Recognizes this skill is for post-call processing"
+    ]
+  }
+]
